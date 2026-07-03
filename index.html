@@ -134,6 +134,20 @@ footer{margin-top:64px;border-top:1px solid var(--line);background:var(--paper)}
 .foot h2{font-family:var(--display);font-size:26px;font-weight:600;margin:0}
 .foot p{max-width:72ch;margin:0;color:var(--ink-soft);font-size:14.5px}
 .legal{font-size:12.5px;color:var(--ink-mute)}
+
+/* Live im Einsatz */
+.livegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:20px;padding:6px 0 20px}
+.live{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);text-decoration:none;color:var(--ink);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .live:hover{transform:translateY(-3px);box-shadow:0 12px 30px -14px rgba(26,38,48,.3);border-color:var(--ink-soft)}
+}
+.live .shot{position:relative;aspect-ratio:16/10;overflow:hidden;border-bottom:1px solid var(--line);background:#1A2630}
+.live .shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.live .shot svg{width:100%;height:100%;display:block}
+.live .body{padding:16px 18px 18px}
+.live .body h3{font-family:var(--display);font-size:19px;font-weight:600;margin:0 0 4px}
+.live .body p{margin:0;font-size:13.5px;color:var(--ink-soft)}
+.live .go{font-family:var(--mono);font-size:12px;color:var(--d365);margin-top:10px;display:inline-block}
 @media print{.filters{display:none}}
 </style>
 </head>
@@ -298,8 +312,74 @@ footer{margin-top:64px;border-top:1px solid var(--line);background:var(--paper)}
           <rect x="300" y="198" width="146" height="30" rx="7" class="nd"/><text x="373" y="217" text-anchor="middle">Tageslimits &amp; Tabus</text>
         </svg>
       </div>
+      <div class="diagram reveal">
+        <h3>D365 ↔ Business Central — Stammdaten immer synchron</h3>
+        <p class="dsub">Kundenprojekt: 13 Flows halten CRM und ERP in beide Richtungen aktuell — ohne Doppelpflege.</p>
+        <svg viewBox="0 0 520 240" role="img" aria-label="Bidirektionale Synchronisation zwischen Dynamics 365 und Business Central über 13 Flows mit Schutzmechanismen">
+          <defs><marker id="ar3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#B9C4CC"/></marker></defs>
+          <rect x="10" y="60" width="140" height="120" rx="10" fill="#E8F0F8" stroke="#2563A8" stroke-width="1.6"/>
+          <text x="80" y="84" text-anchor="middle" style="font-weight:600">Dynamics 365</text>
+          <text x="80" y="102" text-anchor="middle" class="lbl">CRM · VERTRIEB</text>
+          <text x="80" y="126" text-anchor="middle">Firmen · Kontakte</text>
+          <text x="80" y="144" text-anchor="middle">Produkte · Projekte</text>
+          <rect x="370" y="60" width="140" height="120" rx="10" fill="#E8F0F8" stroke="#2563A8" stroke-width="1.6"/>
+          <text x="440" y="84" text-anchor="middle" style="font-weight:600">Business Central</text>
+          <text x="440" y="102" text-anchor="middle" class="lbl">ERP · WARENWIRTSCHAFT</text>
+          <text x="440" y="126" text-anchor="middle">Stammdaten</text>
+          <text x="440" y="144" text-anchor="middle">Belege · Preise</text>
+          <rect x="185" y="86" width="150" height="68" rx="9" fill="#FFFFFF" stroke="#E3E1DA" stroke-width="1.5"/>
+          <text x="260" y="110" text-anchor="middle" style="font-weight:600">13 Sync-Flows</text>
+          <text x="260" y="128" text-anchor="middle" class="lbl">ANLEGEN · ÄNDERN · LÖSCHEN</text>
+          <text x="260" y="144" text-anchor="middle" class="lbl">IN BEIDE RICHTUNGEN</text>
+          <path class="edge" marker-end="url(#ar3)" d="M150 100 L 183 100"/>
+          <path class="edge" marker-end="url(#ar3)" d="M185 140 L 152 140"/>
+          <path class="edge" marker-end="url(#ar3)" d="M335 100 L 368 100"/>
+          <path class="edge" marker-end="url(#ar3)" d="M370 140 L 337 140"/>
+          <text x="10" y="212" class="lbl">SCHUTZ: ENDLOSSCHLEIFEN-SPERRE · STRESSTEST MIT 100 FIRMEN · VOLLSTÄNDIGE DOKUMENTATION</text>
+          <rect x="10" y="222" width="500" height="2" fill="#EFEDE6"/>
+        </svg>
+      </div>
+
     </div>
   </section>
+
+  <section id="live">
+    <div class="sec-head"><h2>Live ausprobieren</h2><span class="count">öffentlich erreichbar</span></div>
+    <p class="sec-intro">Nicht nur Beschreibungen — diese Systeme kann man jetzt anklicken.</p>
+    <div class="livegrid">
+      <a class="live reveal" href="https://get-dealai.com/" rel="noopener" target="_blank">
+        <span class="shot"><img src="assets/shot-dealai.jpg" alt="Screenshot der DealAI-Website: Dein Vertrieb. Auf Autopilot." loading="lazy"></span>
+        <span class="body"><h3>DealAI</h3><p>Der KI-Sales-Assistent, der das CRM ersetzt — Produkt-Website mit Demo-Termin.</p><span class="go">get-dealai.com →</span></span>
+      </a>
+      <a class="live reveal" href="https://vis2lead.org/pipeline-coverage-rechner/" rel="noopener" target="_blank">
+        <span class="shot" aria-hidden="true"><svg viewBox="0 0 320 200">
+          <rect width="320" height="200" fill="#1A2630"/>
+          <text x="24" y="42" style="font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#8FA3B0;letter-spacing:.1em">PIPELINE-COVERAGE-RECHNER</text>
+          <rect x="24" y="58" width="180" height="16" rx="4" fill="#2E3E4A"/>
+          <rect x="24" y="82" width="140" height="16" rx="4" fill="#2E3E4A"/>
+          <rect x="24" y="118" width="88" height="26" rx="6" fill="#B45309"/>
+          <text x="68" y="135" text-anchor="middle" style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;fill:#fff">Berechnen</text>
+          <rect x="220" y="58" width="76" height="86" rx="6" fill="#22303A"/>
+          <rect x="230" y="120" width="12" height="16" fill="#2563A8"/><rect x="248" y="104" width="12" height="32" fill="#4E86C0"/><rect x="266" y="86" width="12" height="50" fill="#8FB4D9"/>
+          <text x="24" y="176" style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;fill:#C6D2DA">Reicht deine Pipeline für dein Umsatzziel?</text>
+        </svg></span>
+        <span class="body"><h3>8 B2B-Rechner</h3><p>CPL, CAC, ROI, Pipeline-Coverage &amp; mehr — kostenlose Werkzeuge, die echte Vertriebsfragen beantworten.</p><span class="go">vis2lead.org →</span></span>
+      </a>
+      <a class="live reveal" href="https://github.com/H2284AT/ai-automation-templates-" rel="noopener" target="_blank">
+        <span class="shot" aria-hidden="true"><svg viewBox="0 0 320 200">
+          <rect width="320" height="200" fill="#1A2630"/>
+          <text x="24" y="42" style="font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#8FA3B0;letter-spacing:.1em">OPEN SOURCE · GITHUB</text>
+          <text x="24" y="78" style="font-family:'IBM Plex Mono',monospace;font-size:13px;fill:#7FD0A0">ai-automation-templates/</text>
+          <text x="40" y="102" style="font-family:'IBM Plex Mono',monospace;font-size:12px;fill:#C6D2DA">├─ crm-automationen/</text>
+          <text x="40" y="122" style="font-family:'IBM Plex Mono',monospace;font-size:12px;fill:#C6D2DA">├─ e-mail-workflows/</text>
+          <text x="40" y="142" style="font-family:'IBM Plex Mono',monospace;font-size:12px;fill:#C6D2DA">├─ ki-agenten/</text>
+          <text x="40" y="162" style="font-family:'IBM Plex Mono',monospace;font-size:12px;fill:#8FA3B0">└─ … 9 Kategorien</text>
+        </svg></span>
+        <span class="body"><h3>AI Automation Templates</h3><p>Öffentliche Vorlagen-Bibliothek für n8n und Power Platform — dokumentiert und sofort einsetzbar.</p><span class="go">github.com →</span></span>
+      </a>
+    </div>
+  </section>
+
 
 
   <section id="kunden" data-sec="kunde">
