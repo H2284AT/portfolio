@@ -5,109 +5,228 @@
 <title>Mag. Herbert Steindl, MBA — Portfolio: Dynamics 365 × KI</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Portfolio von Mag. Herbert Steindl, MBA: 24 Projekte an der Schnittstelle von Microsoft Dynamics 365 und KI — Solution Architecture, Power Platform, KI-Produkte.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2715%27 fill=%27%231A2630%27/%3E%3Ctext x=%2716%27 y=%2721%27 text-anchor=%27middle%27 font-family=%27Georgia%27 font-size=%2713%27 fill=%27white%27%3EHS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ground:#F7F8F6;
+  --ground:#FAF9F6;
   --paper:#FFFFFF;
-  --ink:#17242B;
-  --ink-soft:#44545E;
-  --line:#DDE3E0;
+  --ink:#1A2630;
+  --ink-soft:#4A5A64;
+  --ink-mute:#7A8790;
+  --line:#E3E1DA;
+  --grid:#EFEDE6;
   --d365:#2563A8;
-  --d365-soft:#EAF1F8;
-  --ki:#9A4507;
-  --ki-soft:#FBF1E5;
-  --content:#4D7C4D;
-  --content-soft:#EDF4ED;
-  --display:'Charter','Bitstream Charter','Sitka Text',Cambria,Georgia,serif;
-  --body:'Segoe UI','Helvetica Neue',Arial,sans-serif;
-  --mono:'Cascadia Code',Consolas,'Courier New',monospace;
-}
-:root[data-theme="dark"]{
-  --ground:#F7F8F6; --paper:#FFFFFF; --ink:#17242B; --ink-soft:#44545E; --line:#DDE3E0;
+  --d365-soft:#E8F0F8;
+  --ki:#B45309;
+  --ki-soft:#FAF0E2;
+  --content:#217A3C;
+  --content-soft:#E9F3EC;
+  --display:'Fraunces',Georgia,serif;
+  --body:'IBM Plex Sans','Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',Consolas,monospace;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+body{
+  background:var(--ground);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:32px 32px;
+  color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 a{color:var(--d365)}
 ::selection{background:var(--d365-soft)}
 
-/* Masthead */
-header{border-bottom:1px solid var(--line);background:var(--paper)}
-.mast{display:flex;flex-direction:column;gap:20px;padding:56px 0 44px}
-.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
-h1{font-family:var(--display);font-size:clamp(34px,6vw,58px);line-height:1.05;margin:0;font-weight:700;text-wrap:balance}
-h1 .x{color:var(--ki);font-style:italic}
-.claim{max-width:56ch;font-size:18.5px;color:var(--ink-soft);margin:0}
-.claim strong{color:var(--ink)}
+/* Hero */
+header{border-bottom:1px solid var(--line);background:linear-gradient(180deg,#FFFFFF 0%,#FCFBF8 100%)}
+.mast{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:center;padding:64px 0 40px}
+@media(max-width:860px){.mast{grid-template-columns:1fr;padding:44px 0 30px}}
+.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(40px,6.5vw,72px);line-height:.98;margin:14px 0 18px;letter-spacing:-.01em;text-wrap:balance}
+h1 .x{color:var(--ki);font-style:italic;font-weight:400}
+.claim{max-width:52ch;font-size:18px;color:var(--ink-soft);margin:0}
+.claim strong{color:var(--ink);font-weight:600}
+.hero-fig{min-width:0;margin:0}
+.hero-fig svg{width:100%;height:auto;display:block}
+.hero-cap{font-family:var(--mono);font-size:11.5px;color:var(--ink-mute);margin-top:6px;text-align:right}
 
-/* Stat band */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
-.stat{background:var(--paper);padding:20px 22px}
-.stat b{display:block;font-family:var(--display);font-size:34px;line-height:1.1;font-variant-numeric:tabular-nums}
-.stat span{font-size:13.5px;color:var(--ink-soft)}
-.stat.k b{color:var(--d365)} .stat.e b{color:var(--ki)}
+@media (prefers-reduced-motion:no-preference){
+  .rise{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards}
+  .rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.3s}.rise.d4{animation-delay:.45s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .flow{stroke-dasharray:6 7;animation:flow 2.6s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-52}}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+}
 
-/* Section heads */
-section{padding:52px 0 8px}
+/* Kennzahlen-Visuals */
+.vizband{padding:8px 0 34px}
+.vizgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.viz{background:var(--paper);border:1px solid var(--line);padding:20px 22px 16px}
+.viz h4{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 4px}
+.viz .big{font-family:var(--display);font-size:32px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.viz .sub{font-size:13px;color:var(--ink-soft);margin:2px 0 12px}
+.viz svg{width:100%;height:auto;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px;font-size:12px;color:var(--ink-soft)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+
+/* Abschnitte */
+section{padding:56px 0 8px}
 .sec-head{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:6px}
-.sec-head h2{font-family:var(--display);font-size:clamp(22px,3.4vw,30px);margin:0;text-wrap:balance}
-.sec-head .count{font-family:var(--mono);font-size:13px;color:var(--ink-soft)}
-.sec-intro{max-width:70ch;color:var(--ink-soft);margin:10px 0 26px;font-size:15.5px}
+.sec-head h2{font-family:var(--display);font-weight:600;font-size:clamp(24px,3.6vw,34px);margin:0;text-wrap:balance}
+.sec-head .count{font-family:var(--mono);font-size:12.5px;color:var(--ink-mute)}
+.sec-intro{max-width:72ch;color:var(--ink-soft);margin:12px 0 26px;font-size:15.5px}
+
+/* Architektur-Diagramme */
+.diagrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(430px,1fr));gap:20px;padding:6px 0 20px}
+@media(max-width:520px){.diagrid{grid-template-columns:1fr}}
+.diagram{background:var(--paper);border:1px solid var(--line);padding:22px}
+.diagram h3{font-family:var(--display);font-size:20px;font-weight:600;margin:0 0 2px}
+.diagram .dsub{font-size:13.5px;color:var(--ink-soft);margin:0 0 14px}
+.diagram svg{width:100%;height:auto;display:block;overflow:visible}
+.diagram svg text{font-family:var(--body);font-size:12.5px;fill:var(--ink)}
+.diagram svg .lbl{font-family:var(--mono);font-size:10.5px;fill:var(--ink-mute);letter-spacing:.06em}
+.diagram svg .nd{fill:#fff;stroke:#E3E1DA;stroke-width:1.5}
+.diagram svg .edge{stroke:#B9C4CC;stroke-width:1.6;fill:none}
+.hero-fig svg .lbl{font-family:var(--mono);font-size:11px;fill:#7A8790;letter-spacing:.08em}
 
 /* Filter */
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 6px}
-.chip{border:1px solid var(--line);background:var(--paper);padding:7px 14px;font-size:14px;cursor:pointer;font-family:var(--body);color:var(--ink-soft)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:30px 0 4px}
+.chip{border:1px solid var(--line);background:var(--paper);padding:8px 16px;font-size:14px;cursor:pointer;font-family:var(--body);color:var(--ink-soft);border-radius:999px;transition:border-color .15s,background .15s}
 .chip:hover{border-color:var(--ink-soft)}
 .chip:focus-visible{outline:2px solid var(--d365);outline-offset:2px}
-.chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 
-/* Cards */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;padding:4px 0 26px}
-.card{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--line);padding:22px 22px 18px;display:flex;flex-direction:column;gap:10px}
-.card.kunde{border-top-color:var(--d365)}
-.card.eigen{border-top-color:var(--ki)}
-.card.content{border-top-color:var(--content)}
-.card .meta{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
-.badge{padding:2px 8px;font-size:11.5px;white-space:nowrap}
+/* Karten */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:20px;padding:4px 0 28px}
+.card{position:relative;background:var(--paper);border:1px solid var(--line);padding:24px 24px 18px;display:flex;flex-direction:column;gap:10px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.card::before{content:"";position:absolute;top:0;bottom:0;left:0;width:3px;background:var(--line)}
+.card.kunde::before{background:var(--d365)}
+.card.eigen::before{background:var(--ki)}
+.card.content::before{background:var(--content)}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .card:hover{transform:translateY(-3px);box-shadow:0 10px 28px -14px rgba(26,38,48,.28);border-color:var(--ink-soft)}
+}
+.card .meta{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:11.5px;color:var(--ink-mute)}
+.badge{padding:2px 9px;font-size:11px;white-space:nowrap;border-radius:999px}
 .kunde .badge{background:var(--d365-soft);color:var(--d365)}
 .eigen .badge{background:var(--ki-soft);color:var(--ki)}
 .content .badge{background:var(--content-soft);color:var(--content)}
-.card h3{font-family:var(--display);font-size:20px;margin:0;line-height:1.25;text-wrap:balance}
-.card .role{font-size:13px;color:var(--ink-soft);margin-top:-4px}
+.card h3{font-family:var(--display);font-weight:600;font-size:20.5px;margin:0;line-height:1.22;text-wrap:balance}
+.card .role{font-size:13px;color:var(--ink-mute);margin-top:-4px}
 .card p{margin:0;font-size:14.5px}
-.card .nutzen{border-left:3px solid var(--line);padding:2px 0 2px 12px;color:var(--ink-soft);font-size:13.5px}
-.kunde .nutzen{border-left-color:var(--d365-soft)}
-.eigen .nutzen{border-left-color:var(--ki-soft)}
+.card .nutzen{border-left:3px solid var(--line);padding:2px 0 2px 12px;color:var(--ink-soft);font-size:13.5px;font-style:italic}
+.kunde .nutzen{border-left-color:var(--d365)}
+.eigen .nutzen{border-left-color:var(--ki)}
+.content .nutzen{border-left-color:var(--content)}
 .kpis{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
-.kpi{font-family:var(--mono);font-size:12px;background:var(--ground);border:1px solid var(--line);padding:3px 8px;font-variant-numeric:tabular-nums}
-.tech{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:8px}
-.tech span{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);border:1px solid var(--line);padding:2px 7px;border-radius:2px}
+.kpi{font-family:var(--mono);font-size:11.5px;background:var(--ground);border:1px solid var(--line);padding:3px 9px;font-variant-numeric:tabular-nums;border-radius:3px}
+.tech{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:10px}
+.tech span{font-family:var(--mono);font-size:11px;color:var(--ink-mute);border:1px solid var(--line);padding:2px 8px;border-radius:999px;background:#FDFCFA}
 
 /* Footer */
-footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
-.foot{padding:36px 0 48px;display:flex;flex-direction:column;gap:14px}
-.foot h2{font-family:var(--display);font-size:24px;margin:0}
-.foot p{max-width:70ch;margin:0;color:var(--ink-soft);font-size:14.5px}
-.legal{font-size:12.5px;color:var(--ink-soft)}
-@media (prefers-reduced-motion:no-preference){
-  .card{transition:border-color .15s ease}
-  .card:hover{border-color:var(--ink-soft)}
-}
+footer{margin-top:64px;border-top:1px solid var(--line);background:var(--paper)}
+.foot{padding:40px 0 52px;display:flex;flex-direction:column;gap:14px}
+.foot h2{font-family:var(--display);font-size:26px;font-weight:600;margin:0}
+.foot p{max-width:72ch;margin:0;color:var(--ink-soft);font-size:14.5px}
+.legal{font-size:12.5px;color:var(--ink-mute)}
 @media print{.filters{display:none}}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap mast">
-    <div class="eyebrow">Portfolio · Mag. Herbert Steindl, MBA · Wien / Niederösterreich</div>
-    <h1>Dynamics&nbsp;365 <span class="x">×</span> KI</h1>
-    <p class="claim"><strong>Solution Architect für Microsoft Dynamics 365 — und Entwickler von KI-Produkten.</strong> 24 Projekte, ein roter Faden: Systeme, die im Alltag wirklich funktionieren. Ohne Buzzwords, mit messbaren Ergebnissen.</p>
-    <div class="stats">
-      <div class="stat k"><b>14</b><span>Kundenprojekte Dynamics 365 &amp; Power Platform</span></div>
-      <div class="stat e"><b>10</b><span>KI- und Software-Produkte</span></div>
-      <div class="stat k"><b>&gt;80 %</b><span>Standard-Quote in der größten Architektur (97 Use Cases)</span></div>
-      <div class="stat e"><b>9.244</b><span>Firmen automatisiert auf Kaufsignale analysiert</span></div>
+    <div>
+      <div class="eyebrow rise d1">Portfolio · Mag. Herbert Steindl, MBA · Wien / Niederösterreich</div>
+      <h1 class="rise d2">Dynamics&nbsp;365 <span class="x">×</span> KI</h1>
+      <p class="claim rise d3"><strong>Solution Architect für Microsoft Dynamics 365 — und Entwickler von KI-Produkten.</strong> 24 Projekte, ein roter Faden: Systeme, die im Alltag wirklich funktionieren. Ohne Buzzwords, mit messbaren Ergebnissen.</p>
+    </div>
+    <figure class="hero-fig rise d4" aria-label="Schaubild: Zwei Welten — Dynamics 365 und KI — verbunden durch eine Person">
+      <svg viewBox="0 0 460 300" role="img">
+        <text x="20" y="24" class="lbl">DYNAMICS 365</text>
+        <g>
+          <rect x="20" y="36" width="128" height="34" rx="8" fill="#E8F0F8" stroke="#2563A8" stroke-width="1.4"/>
+          <text x="84" y="57" text-anchor="middle" style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;fill:#1A2630">Sales &amp; CRM</text>
+          <rect x="20" y="96" width="128" height="34" rx="8" fill="#E8F0F8" stroke="#2563A8" stroke-width="1.4"/>
+          <text x="84" y="117" text-anchor="middle" style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;fill:#1A2630">Journeys</text>
+          <rect x="20" y="156" width="128" height="34" rx="8" fill="#E8F0F8" stroke="#2563A8" stroke-width="1.4"/>
+          <text x="84" y="177" text-anchor="middle" style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;fill:#1A2630">Dataverse</text>
+          <rect x="20" y="216" width="128" height="34" rx="8" fill="#E8F0F8" stroke="#2563A8" stroke-width="1.4"/>
+          <text x="84" y="237" text-anchor="middle" style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;fill:#1A2630">Power Automate</text>
+        </g>
+        <text x="312" y="24" class="lbl">KI &amp; AUTOMATISIERUNG</text>
+        <g>
+          <rect x="312" y="36" width="128" height="34" rx="8" fill="#FAF0E2" stroke="#B45309" stroke-width="1.4"/>
+          <text x="376" y="57" text-anchor="middle" style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;fill:#1A2630">LLM-Agenten</text>
+          <rect x="312" y="96" width="128" height="34" rx="8" fill="#FAF0E2" stroke="#B45309" stroke-width="1.4"/>
+          <text x="376" y="117" text-anchor="middle" style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;fill:#1A2630">RAG &amp; Memory</text>
+          <rect x="312" y="156" width="128" height="34" rx="8" fill="#FAF0E2" stroke="#B45309" stroke-width="1.4"/>
+          <text x="376" y="177" text-anchor="middle" style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;fill:#1A2630">n8n-Workflows</text>
+          <rect x="312" y="216" width="128" height="34" rx="8" fill="#FAF0E2" stroke="#B45309" stroke-width="1.4"/>
+          <text x="376" y="237" text-anchor="middle" style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;fill:#1A2630">Human-in-the-Loop</text>
+        </g>
+        <g stroke="#B9C4CC" stroke-width="1.5" fill="none">
+          <path class="flow" d="M148 53 C 200 53, 200 138, 228 143"/>
+          <path class="flow" d="M148 113 C 195 113, 195 141, 228 144"/>
+          <path class="flow" d="M148 173 C 195 173, 195 149, 228 146"/>
+          <path class="flow" d="M148 233 C 200 233, 200 152, 228 148"/>
+          <path class="flow" d="M312 53 C 260 53, 260 138, 232 143"/>
+          <path class="flow" d="M312 113 C 265 113, 265 141, 232 144"/>
+          <path class="flow" d="M312 173 C 265 173, 265 149, 232 146"/>
+          <path class="flow" d="M312 233 C 260 233, 260 152, 232 148"/>
+        </g>
+        <circle cx="230" cy="145" r="30" fill="#1A2630"/>
+        <text x="230" y="150" text-anchor="middle" style="font-family:'Fraunces',serif;font-size:15px;font-weight:600;fill:#FFFFFF">HS</text>
+        <text x="230" y="196" text-anchor="middle" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;fill:#7A8790;letter-spacing:.06em">ARCHITEKT · ENTWICKLER · MACHER</text>
+      </svg>
+      <figcaption class="hero-cap">Ein Profil, zwei Welten — verbunden in 24 Projekten</figcaption>
+    </figure>
+  </div>
+  <div class="wrap vizband">
+    <div class="vizgrid">
+      <div class="viz rise d2">
+        <h4>Portfolio-Zusammensetzung</h4>
+        <div class="big">26 Projekte &amp; Formate</div>
+        <p class="sub">14 Kundenprojekte · 10 KI-Produkte · 2 Content-Formate</p>
+        <svg viewBox="0 0 360 34" role="img" aria-label="Balken: 14 Kundenprojekte, 10 KI-Produkte, 2 Content-Formate">
+          <rect x="0" y="6" width="192" height="18" rx="4" fill="#2563A8"/>
+          <rect x="194" y="6" width="136" height="18" rx="4" fill="#B45309"/>
+          <rect x="332" y="6" width="28" height="18" rx="4" fill="#217A3C"/>
+          <text x="8" y="19.5" style="fill:#fff;font-size:11px;font-family:'IBM Plex Mono',monospace">14</text>
+          <text x="202" y="19.5" style="fill:#fff;font-size:11px;font-family:'IBM Plex Mono',monospace">10</text>
+          <text x="338" y="19.5" style="fill:#fff;font-size:11px;font-family:'IBM Plex Mono',monospace">2</text>
+        </svg>
+        <div class="legend"><span><i style="background:#2563A8"></i>Dynamics 365</span><span><i style="background:#B45309"></i>KI &amp; Automatisierung</span><span><i style="background:#217A3C"></i>Content</span></div>
+      </div>
+      <div class="viz rise d3">
+        <h4>Standard-Quote der größten Architektur</h4>
+        <div class="big">&gt;80&nbsp;% Standard</div>
+        <p class="sub">97 Use Cases, 1.922 h kalkuliert — Custom Code nur wo nötig</p>
+        <svg viewBox="0 0 360 34" role="img" aria-label="Mehr als 80 Prozent Standardfunktionen, unter 20 Prozent Individualentwicklung">
+          <rect x="0" y="6" width="288" height="18" rx="4" fill="#2563A8"/>
+          <rect x="290" y="6" width="70" height="18" rx="4" fill="#D8E3EE"/>
+          <text x="8" y="19.5" style="fill:#fff;font-size:11px;font-family:'IBM Plex Sans',sans-serif">Standard &amp; Branchenpakete</text>
+          <text x="296" y="19.5" style="fill:#4A5A64;font-size:11px;font-family:'IBM Plex Sans',sans-serif">Custom</text>
+        </svg>
+        <div class="legend"><span>Weniger Custom Code = geringere Lizenz- und Wartungskosten</span></div>
+      </div>
+      <div class="viz rise d4">
+        <h4>Lead-Pipeline, vollautomatisch</h4>
+        <div class="big">9.244 → 1.495</div>
+        <p class="sub">Von der Firmen-Analyse zum verifizierten Kontakt</p>
+        <svg viewBox="0 0 360 92" role="img" aria-label="Trichter: 9244 Firmen analysiert, 2608 Kaufsignale erkannt, 1495 Kontakte verifiziert">
+          <rect x="0" y="4" width="360" height="20" rx="4" fill="#F0D2AF"/>
+          <rect x="0" y="34" width="102" height="20" rx="4" fill="#D98E3F"/>
+          <rect x="0" y="64" width="58" height="20" rx="4" fill="#B45309"/>
+          <text x="354" y="18" text-anchor="end" style="fill:#1A2630;font-size:11px;font-family:'IBM Plex Sans',sans-serif">9.244 Firmen analysiert</text>
+          <text x="110" y="48" style="fill:#1A2630;font-size:11px;font-family:'IBM Plex Sans',sans-serif">2.608 Kaufsignale erkannt</text>
+          <text x="66" y="78" style="fill:#1A2630;font-size:11px;font-family:'IBM Plex Sans',sans-serif">1.495 Kontakte verifiziert</text>
+        </svg>
+      </div>
     </div>
   </div>
 </header>
@@ -120,12 +239,75 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
     <button class="chip" data-f="content">Content &amp; Wissensvermittlung</button>
   </div>
 
+  <section id="einblicke">
+    <div class="sec-head"><h2>Architektur-Einblicke</h2><span class="count">zwei Beispiele, vereinfacht</span></div>
+    <p class="sec-intro">So sehen die Systeme von innen aus — bewusst vereinfacht, damit man es ohne Technik-Studium versteht.</p>
+    <div class="diagrid">
+      <div class="diagram reveal">
+        <h3>DealAI — das CRM, das sich selbst pflegt</h3>
+        <p class="dsub">Der Vertriebler spricht, die KI erledigt: anlegen, vorbereiten, nachfassen.</p>
+        <svg viewBox="0 0 520 240" role="img" aria-label="Datenfluss: Kanäle zu KI-Agent zu Datenhaltung und Automationen zu Ergebnissen">
+          <defs><marker id="ar" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#B9C4CC"/></marker></defs>
+          <text x="10" y="18" class="lbl">EINGANG</text>
+          <rect x="10" y="28" width="110" height="30" rx="7" class="nd"/><text x="65" y="47" text-anchor="middle">Chat &amp; Sprache</text>
+          <rect x="10" y="66" width="110" height="30" rx="7" class="nd"/><text x="65" y="85" text-anchor="middle">E-Mail-Postfach</text>
+          <rect x="10" y="104" width="110" height="30" rx="7" class="nd"/><text x="65" y="123" text-anchor="middle">Telegram</text>
+          <path class="edge" marker-end="url(#ar)" d="M120 43 C 160 43, 160 78, 195 80"/>
+          <path class="edge" marker-end="url(#ar)" d="M120 81 L 195 81"/>
+          <path class="edge" marker-end="url(#ar)" d="M120 119 C 160 119, 160 84, 195 82"/>
+          <rect x="197" y="52" width="128" height="58" rx="9" fill="#FAF0E2" stroke="#B45309" stroke-width="1.6"/>
+          <text x="261" y="76" text-anchor="middle" style="font-weight:600">KI-Agent</text>
+          <text x="261" y="94" text-anchor="middle" class="lbl">41 WERKZEUGE</text>
+          <path class="edge" marker-end="url(#ar)" d="M242 110 L 200 140"/>
+          <path class="edge" marker-end="url(#ar)" d="M280 110 L 300 140"/>
+          <rect x="120" y="142" width="130" height="30" rx="7" class="nd"/><text x="185" y="161" text-anchor="middle">Datenbank + RAG</text>
+          <rect x="264" y="142" width="130" height="30" rx="7" class="nd"/><text x="329" y="161" text-anchor="middle">12 Automationen</text>
+          <path class="edge" marker-end="url(#ar)" d="M394 157 C 420 157, 420 130, 430 96"/>
+          <path class="edge" marker-end="url(#ar)" d="M325 74 L 396 60"/>
+          <path class="edge" marker-end="url(#ar)" d="M325 88 L 396 122"/>
+          <rect x="398" y="30" width="112" height="30" rx="7" fill="#E8F0F8" stroke="#2563A8" stroke-width="1.4"/><text x="454" y="49" text-anchor="middle">Angebot als PDF</text>
+          <rect x="398" y="66" width="112" height="30" rx="7" fill="#E8F0F8" stroke="#2563A8" stroke-width="1.4"/><text x="454" y="85" text-anchor="middle">Morgen-Briefing</text>
+          <rect x="398" y="102" width="112" height="30" rx="7" fill="#E8F0F8" stroke="#2563A8" stroke-width="1.4"/><text x="454" y="121" text-anchor="middle">Follow-up-Mail</text>
+          <text x="10" y="210" class="lbl">JEDE KUNDENINSTANZ LÄUFT GETRENNT — DATENSCHUTZ DURCH PHYSISCHE TRENNUNG</text>
+          <rect x="10" y="220" width="500" height="2" fill="#EFEDE6"/>
+        </svg>
+      </div>
+      <div class="diagram reveal">
+        <h3>AI-Com-Master — Autonomie mit menschlicher Freigabe</h3>
+        <p class="dsub">Vier KI-Rollen prüfen jeden Entwurf — veröffentlicht wird nur, was der Mensch freigibt.</p>
+        <svg viewBox="0 0 520 240" role="img" aria-label="Pipeline: Feed über vier Prüfrollen zur menschlichen Freigabe, mit Audit-Log und Kill-Switch">
+          <defs><marker id="ar2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#B9C4CC"/></marker></defs>
+          <rect x="10" y="40" width="92" height="32" rx="7" class="nd"/><text x="56" y="60" text-anchor="middle">LinkedIn-Feed</text>
+          <path class="edge" marker-end="url(#ar2)" d="M102 56 L 122 56"/>
+          <rect x="124" y="40" width="82" height="32" rx="7" fill="#FAF0E2" stroke="#B45309" stroke-width="1.4"/><text x="165" y="60" text-anchor="middle">Bewerter</text>
+          <path class="edge" marker-end="url(#ar2)" d="M206 56 L 230 56"/>
+          <rect x="232" y="40" width="82" height="32" rx="7" fill="#FAF0E2" stroke="#B45309" stroke-width="1.4"/><text x="273" y="60" text-anchor="middle">Schreiber</text>
+          <path class="edge" marker-end="url(#ar2)" d="M314 56 L 338 56"/>
+          <rect x="340" y="40" width="92" height="32" rx="7" fill="#FAF0E2" stroke="#B45309" stroke-width="1.4"/><text x="386" y="60" text-anchor="middle">Fachexperte</text>
+          <path class="edge" marker-end="url(#ar2)" d="M386 72 C 386 96, 165 84, 165 108"/>
+          <rect x="124" y="110" width="82" height="32" rx="7" fill="#FAF0E2" stroke="#B45309" stroke-width="1.4"/><text x="165" y="130" text-anchor="middle">Kritiker</text>
+          <path class="edge" marker-end="url(#ar2)" d="M206 126 L 246 126"/>
+          <rect x="248" y="104" width="150" height="46" rx="9" fill="#E9F3EC" stroke="#217A3C" stroke-width="1.8"/>
+          <text x="323" y="124" text-anchor="middle" style="font-weight:600">Mensch entscheidet</text>
+          <text x="323" y="141" text-anchor="middle" class="lbl">FREIGABE PER TELEGRAM</text>
+          <path class="edge" marker-end="url(#ar2)" d="M398 127 L 428 127"/>
+          <rect x="430" y="111" width="82" height="32" rx="7" class="nd"/><text x="471" y="131" text-anchor="middle">Kommentar</text>
+          <text x="10" y="188" class="lbl">SICHERHEITSNETZ</text>
+          <rect x="10" y="198" width="156" height="30" rx="7" class="nd"/><text x="88" y="217" text-anchor="middle">Audit-Log (unlöschbar)</text>
+          <rect x="178" y="198" width="110" height="30" rx="7" class="nd"/><text x="233" y="217" text-anchor="middle">Kill-Switch</text>
+          <rect x="300" y="198" width="146" height="30" rx="7" class="nd"/><text x="373" y="217" text-anchor="middle">Tageslimits &amp; Tabus</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+
   <section id="kunden" data-sec="kunde">
     <div class="sec-head"><h2>Dynamics 365 &amp; Power Platform — Kundenprojekte</h2><span class="count">A1–A14 · anonymisiert</span></div>
     <p class="sec-intro">Vierzehn Projekte quer durch Branchen — von der Greenfield-Gesamtarchitektur bis zum Rettungseinsatz im laufenden Betrieb. Kundennamen nenne ich aus Vertraulichkeitsgründen nur im persönlichen Gespräch.</p>
     <div class="grid">
 
-      <article class="card kunde"><div class="meta"><span>Europäischer Reiseveranstalter · seit 01/2026</span><span class="badge">Kundenprojekt</span></div>
+      <article class="reveal card kunde"><div class="meta"><span>Europäischer Reiseveranstalter · seit 01/2026</span><span class="badge">Kundenprojekt</span></div>
         <h3>Greenfield-Gesamtarchitektur: Sales &amp; Marketing für mehrere Marken</h3>
         <div class="role">Lead Solution Architect</div>
         <p>Aus 97 Use Cases entstand mit einem dreiköpfigen Architektenteam eine umsetzbare Gesamtarchitektur: Stammdaten, Vertrieb, Marketing, Beschwerdemanagement und die Anbindung des Buchungssystems.</p>
@@ -134,7 +316,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>D365 Sales</span><span>CI Journeys</span><span>Power Automate</span><span>REST/SOAP</span><span>Power BI</span></div>
       </article>
 
-      <article class="card kunde"><div class="meta"><span>Internationaler Chemiehandel · seit 10/2025</span><span class="badge">Kundenprojekt</span></div>
+      <article class="reveal card kunde"><div class="meta"><span>Internationaler Chemiehandel · seit 10/2025</span><span class="badge">Kundenprojekt</span></div>
         <h3>CRM-Sanierung im laufenden Betrieb + Business-Central-Anbindung</h3>
         <div class="role">Solution Architect &amp; Developer</div>
         <p>Ein gewachsenes CRM stabilisiert, Business Central über Virtual Tables angebunden, tausende Datensätze migriert und den Musterversand digitalisiert. Ein kritisches Speicher- und Performanceproblem auf doppelt ausgelöste Workflows zurückgeführt und mit Microsoft Support dauerhaft gelöst.</p>
@@ -142,7 +324,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>D365 Sales</span><span>Business Central</span><span>Virtual Tables</span><span>Python</span><span>PowerShell</span></div>
       </article>
 
-      <article class="card kunde"><div class="meta"><span>Industrieunternehmen · 08/2024–10/2025</span><span class="badge">Kundenprojekt</span></div>
+      <article class="reveal card kunde"><div class="meta"><span>Industrieunternehmen · 08/2024–10/2025</span><span class="badge">Kundenprojekt</span></div>
         <h3>Bidirektionale Synchronisation D365 ↔ Business Central</h3>
         <div class="role">Integration Specialist</div>
         <p>Vollständige Zwei-Wege-Synchronisation für Firmen, Kontakte, Produkte und Projekte: rund 13 produktive Flows mit Endlosschleifen-Schutz, Stresstest mit 100 Accounts, vollständige Schnittstellendokumentation.</p>
@@ -151,7 +333,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>Power Automate</span><span>Custom API</span><span>Child Flows</span><span>Dataverse</span></div>
       </article>
 
-      <article class="card kunde"><div class="meta"><span>Immobilien-Investment · 02–04/2025</span><span class="badge">Kundenprojekt</span></div>
+      <article class="reveal card kunde"><div class="meta"><span>Immobilien-Investment · 02–04/2025</span><span class="badge">Kundenprojekt</span></div>
         <h3>Hierarchisches Datenmodell für Investmentstrukturen</h3>
         <div class="role">Solution Architect</div>
         <p>Vierstufiges Entity-Modell (Objekte → Projekte → Aufträge → Unteraufträge), hierarchische Auftragsnummerierung, elf Connection Roles, Vier-Rollen-Sicherheitskonzept und OCR-gestützte Rechnungsverarbeitung.</p>
@@ -159,7 +341,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>D365 Sales</span><span>Custom Entities</span><span>SharePoint</span><span>OCR</span></div>
       </article>
 
-      <article class="card kunde"><div class="meta"><span>Mitglieder- und Fachverband · 2023–02/2026</span><span class="badge">Kundenprojekt</span></div>
+      <article class="reveal card kunde"><div class="meta"><span>Mitglieder- und Fachverband · 2023–02/2026</span><span class="badge">Kundenprojekt</span></div>
         <h3>Datenqualität &amp; Marketing über mehrere Jahre</h3>
         <div class="role">CRM-Consultant &amp; Solution Architect</div>
         <p>Knapp 1.000 fehlerhafte Mailinglisten-Zuordnungen aus rund 4.000 Datensätzen automatisiert bereinigt — mit Backup, Rollback und mehrstufiger Filterlogik. Eigener Segmentexport über FetchXML und die D365 Web API.</p>
@@ -167,7 +349,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>CI Journeys</span><span>FetchXML</span><span>JavaScript</span><span>Web API</span></div>
       </article>
 
-      <article class="card kunde"><div class="meta"><span>B2B-Software &amp; Beratung · laufend</span><span class="badge">Kundenprojekt</span></div>
+      <article class="reveal card kunde"><div class="meta"><span>B2B-Software &amp; Beratung · laufend</span><span class="badge">Kundenprojekt</span></div>
         <h3>Journeys &amp; Event-Management für 500+ Veranstaltungen</h3>
         <div class="role">Integration &amp; Incident Lead</div>
         <p>Neun aktive Journeys und Event-Management für über 500 Veranstaltungen. Als ein Microsoft-Backend-Update den Go-Live blockierte: zwei Support-Cases bis zur Lösung geführt und für einen defekten Journey-Trigger eine funktionierende Alternative gebaut.</p>
@@ -176,7 +358,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>CI Journeys</span><span>Event Mgmt</span><span>Teams</span></div>
       </article>
 
-      <article class="card kunde"><div class="meta"><span>Medizinische Fortbildungsakademie · 2023–10/2024</span><span class="badge">Kundenprojekt</span></div>
+      <article class="reveal card kunde"><div class="meta"><span>Medizinische Fortbildungsakademie · 2023–10/2024</span><span class="badge">Kundenprojekt</span></div>
         <h3>Ablösung einer Legacy-Datenbank aus den 1990ern</h3>
         <div class="role">Consultant — Datenmodell &amp; Migration</div>
         <p>Neues Datenmodell für Sonderfälle wie Ärzte an mehreren Institutionen und bis zu vier Adressen pro Kontakt; Datenbereinigung per SQL, anschließend Anwenderschulung.</p>
@@ -184,7 +366,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>Dataverse</span><span>N:N</span><span>SQL</span></div>
       </article>
 
-      <article class="card kunde"><div class="meta"><span>Bauwirtschaft &amp; Immobilien · 03–04/2026</span><span class="badge">Kundenprojekt</span></div>
+      <article class="reveal card kunde"><div class="meta"><span>Bauwirtschaft &amp; Immobilien · 03–04/2026</span><span class="badge">Kundenprojekt</span></div>
         <h3>E-Mail-Versand nach Compliance-Totalausfall wiederhergestellt</h3>
         <div class="role">Troubleshooting &amp; Compliance</div>
         <p>Nach der Abkündigung von Outbound Marketing war der Versand vollständig ausgefallen. Ursache: inkompatible Compliance-Profile. 83 E-Mails über drei Profile migriert, Einwilligungen übernommen, Testsegmente gegen versehentlichen Massenversand etabliert.</p>
@@ -193,7 +375,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>CI Journeys</span><span>Compliance Profiles</span><span>Consent</span></div>
       </article>
 
-      <article class="card kunde"><div class="meta"><span>Großer Mobilitätsverband · 10/2024–12/2025</span><span class="badge">Kundenprojekt</span></div>
+      <article class="reveal card kunde"><div class="meta"><span>Großer Mobilitätsverband · 10/2024–12/2025</span><span class="badge">Kundenprojekt</span></div>
         <h3>Mitgliederverwaltung mit Amtszeiten und Serienbriefen</h3>
         <div class="role">Consultant &amp; Workshop-Leitung</div>
         <p>Nach einem ganztägigen Anforderungsworkshop: Verbandsstrukturen, Connection Roles mit Amtszeiten, strukturierte Mitgliederimporte und automatisierte Word-Serienbriefe.</p>
@@ -201,7 +383,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>D365 Sales</span><span>Connection Roles</span><span>Word Templates</span></div>
       </article>
 
-      <article class="card kunde"><div class="meta"><span>Finanzsoftware &amp; Beratung · 2023–08/2025</span><span class="badge">Kundenprojekt</span></div>
+      <article class="reveal card kunde"><div class="meta"><span>Finanzsoftware &amp; Beratung · 2023–08/2025</span><span class="badge">Kundenprojekt</span></div>
         <h3>Geführter Vertriebsprozess mit Freigaben</h3>
         <div class="role">Consultant</div>
         <p>Vierstufiger Business Process Flow, Erinnerungen bei stagnierenden Verkaufschancen, Freigaben an definierten Phasen, automatische sechsstellige Kundennummern — plus Anwenderschulung.</p>
@@ -209,7 +391,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>BPF</span><span>Approvals</span><span>Workflows</span></div>
       </article>
 
-      <article class="card kunde"><div class="meta"><span>Hygiene- &amp; Reinigungstechnik · 08–12/2025</span><span class="badge">Kundenprojekt</span></div>
+      <article class="reveal card kunde"><div class="meta"><span>Hygiene- &amp; Reinigungstechnik · 08–12/2025</span><span class="badge">Kundenprojekt</span></div>
         <h3>Managed Support: Wartung &amp; Systemchecks</h3>
         <div class="role">Consultant</div>
         <p>Monatliches Supportpaket: Lizenzen, Speicher, Dataverse, Flows, App-Updates — dazu Sales-Funnel-Aufbau und nachvollziehbare Dokumentation des Systemzustands.</p>
@@ -217,7 +399,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>D365</span><span>Power Automate</span><span>DEV/TEST/PROD</span></div>
       </article>
 
-      <article class="card kunde"><div class="meta"><span>Öffentlich-naher Dienstleister · 05–09/2025</span><span class="badge">Kundenprojekt</span></div>
+      <article class="reveal card kunde"><div class="meta"><span>Öffentlich-naher Dienstleister · 05–09/2025</span><span class="badge">Kundenprojekt</span></div>
         <h3>E-Rechnung (XRechnung / UBL 2.1) direkt aus D365</h3>
         <div class="role">Consultant &amp; Entwickler</div>
         <p>Vorlagen für XRechnung und UBL 2.1 entwickelt: Lizenz- und Projektrechnungen getrennt, Gutschriften und Korrekturen berücksichtigt, Zahlungsinformationen je Geschäftsfall.</p>
@@ -225,7 +407,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>XRechnung</span><span>UBL 2.1</span><span>XML</span></div>
       </article>
 
-      <article class="card kunde"><div class="meta"><span>Marketing- &amp; Beratungsdienstleister</span><span class="badge">Kundenprojekt</span></div>
+      <article class="reveal card kunde"><div class="meta"><span>Marketing- &amp; Beratungsdienstleister</span><span class="badge">Kundenprojekt</span></div>
         <h3>Drei Geschäftsmodelle in einem CRM — ohne Custom Code</h3>
         <div class="role">Consultant</div>
         <p>Festpreis, Projektpauschale und Stundenabrechnung in einem gemeinsamen CRM: 15 Kontaktrollen, zwei Business Units, dreistufiges Sicherheitskonzept, ganztägige Anwenderschulung.</p>
@@ -234,7 +416,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>Business Units</span><span>Security Roles</span><span>Branchenpakete</span></div>
       </article>
 
-      <article class="card kunde"><div class="meta"><span>Produktion &amp; Handel (SAP) · 04/2025</span><span class="badge">Kundenprojekt</span></div>
+      <article class="reveal card kunde"><div class="meta"><span>Produktion &amp; Handel (SAP) · 04/2025</span><span class="badge">Kundenprojekt</span></div>
         <h3>Einkaufs-Dashboard aus SAP-Daten</h3>
         <div class="role">BI-Consultant</div>
         <p>Einkaufs-Dashboard in Power BI aus SAP-Performance-Daten, parallel der erste funktionsfähige Stand eines Data Warehouse.</p>
@@ -249,7 +431,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
     <p class="sec-intro">Zehn Produkte und Systeme — vom produktiven KI-Sales-Assistenten bis zum EU-AI-Act-Prüfwerkzeug. Von der Idee über Architektur und Code bis zum laufenden Betrieb.</p>
     <div class="grid">
 
-      <article class="card eigen"><div class="meta"><span>seit 02/2026 · produktives MVP</span><span class="badge">KI &amp; Automatisierung</span></div>
+      <article class="reveal card eigen"><div class="meta"><span>seit 02/2026 · produktives MVP</span><span class="badge">KI &amp; Automatisierung</span></div>
         <h3>DealAI — das CRM, das sich selbst pflegt</h3>
         <p>KI-Sales-Assistent mit CRM-Funktionen: Vertriebler sprechen oder chatten mit dem System, die KI legt Kontakte und Deals an, bereitet Meetings vor, schreibt Follow-ups und liefert das Morgen-Briefing. Backend, Frontend, Datenmodell und Agentenlogik komplett selbst entwickelt.</p>
         <p class="nutzen">Mehr Zeit für den Verkauf, kein Pflegefrust — begleitet von 12 produktiven Automatisierungs-Workflows.</p>
@@ -257,7 +439,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>Python/FastAPI</span><span>React/TS</span><span>PostgreSQL</span><span>Qdrant</span><span>Docker</span><span>n8n</span></div>
       </article>
 
-      <article class="card eigen"><div class="meta"><span>seit 06/2026 · produktiv</span><span class="badge">KI &amp; Automatisierung</span></div>
+      <article class="reveal card eigen"><div class="meta"><span>seit 06/2026 · produktiv</span><span class="badge">KI &amp; Automatisierung</span></div>
         <h3>AI-Com-Master — LinkedIn-Assistent mit menschlicher Freigabe</h3>
         <p>Findet passende LinkedIn-Beiträge, bewertet sie und erstellt Kommentar-Entwürfe nach festen Tonalitäts- und Risikoregeln. Ein zweiter Agent prüft jeden Text, die endgültige Freigabe erfolgt einzeln durch einen Menschen.</p>
         <p class="nutzen">Kontinuierliche, markensichere LinkedIn-Präsenz ohne Stundenaufwand — mit Tageslimits, Tabuthemen und Audit-Log.</p>
@@ -265,28 +447,28 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>n8n</span><span>LLM-Routing</span><span>Playwright</span><span>pgvector</span></div>
       </article>
 
-      <article class="card eigen"><div class="meta"><span>seit 06/2026</span><span class="badge">KI &amp; Automatisierung</span></div>
+      <article class="reveal card eigen"><div class="meta"><span>seit 06/2026</span><span class="badge">KI &amp; Automatisierung</span></div>
         <h3>KI-Mitarbeiter — ein Agenten-Team auf Knopfdruck</h3>
         <p>Spezialisierte Agenten für Recherche, Bewertung, Erstellung und Qualitätskritik. Aufgaben werden nach Komplexität geroutet, Kosten und Läufe sind pro Agent nachvollziehbar, Freigaben und Alarme laufen über Telegram.</p>
         <p class="nutzen">Kalkulierbare Kosten, menschliche Kontrolle, nachvollziehbare Qualität.</p>
         <div class="tech"><span>n8n</span><span>Python</span><span>SQLite</span><span>Telegram</span><span>Multi-Agent</span></div>
       </article>
 
-      <article class="card eigen"><div class="meta"><span>seit 2025</span><span class="badge">KI &amp; Automatisierung</span></div>
+      <article class="reveal card eigen"><div class="meta"><span>seit 2025</span><span class="badge">KI &amp; Automatisierung</span></div>
         <h3>KI-Chatbot-Plattform für Coaching &amp; Wellbeing</h3>
         <p>Mehrsprachige Plattform mit Text, Sprache und Bildverständnis, mehrstufigem Onboarding und Session-Memory. Altersprüfung, einstellbare Löschfristen und gesicherte Webhooks von Beginn an eingebaut.</p>
         <p class="nutzen">Niederschwellige Begleitung rund um die Uhr — datenschutzfreundlich gebaut.</p>
         <div class="tech"><span>Python/FastAPI</span><span>Whisper</span><span>OCR</span><span>Redis</span><span>PostgreSQL</span></div>
       </article>
 
-      <article class="card eigen"><div class="meta"><span>seit 2026</span><span class="badge">KI &amp; Automatisierung</span></div>
+      <article class="reveal card eigen"><div class="meta"><span>seit 2026</span><span class="badge">KI &amp; Automatisierung</span></div>
         <h3>Dynamics-GPT — KI-Assistent direkt im D365-Fenster</h3>
         <p>Eingebettete KI-Oberfläche mit Entra-ID-Anmeldung: Tokens werden im Hintergrund erneuert, Rollen- und Tenant-Kontext an das Backend weitergegeben, der API-Endpunkt technisch abgesichert.</p>
         <p class="nutzen">KI-Hilfe im CRM ohne Systemwechsel — Entra-ID-gesichert und unternehmenstauglich.</p>
         <div class="tech"><span>React/TS</span><span>MSAL</span><span>Entra ID</span><span>Azure App Service</span></div>
       </article>
 
-      <article class="card eigen"><div class="meta"><span>06–12/2025 · öffentlich auf GitHub</span><span class="badge">KI &amp; Automatisierung</span></div>
+      <article class="reveal card eigen"><div class="meta"><span>06–12/2025 · öffentlich auf GitHub</span><span class="badge">KI &amp; Automatisierung</span></div>
         <h3>AI Automation Templates — öffentliche Vorlagen-Bibliothek</h3>
         <p>Wiederverwendbare Automatisierungsvorlagen für neun Anwendungsbereiche, dokumentiert und nach Komplexität eingeordnet — für n8n, Power Platform, Docker und REST-Integrationen.</p>
         <p class="nutzen">Teams automatisieren schneller, statt bei null zu beginnen. Rund 90 % Eigenentwicklungen.</p>
@@ -294,7 +476,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>n8n</span><span>Power Automate</span><span>Docker</span><span>REST</span></div>
       </article>
 
-      <article class="card eigen"><div class="meta"><span>2023–2026</span><span class="badge">KI &amp; Automatisierung</span></div>
+      <article class="reveal card eigen"><div class="meta"><span>2023–2026</span><span class="badge">KI &amp; Automatisierung</span></div>
         <h3>Lead.Gen.Machine — B2B-Kaufsignale automatisch erkennen</h3>
         <p>Das System erkennt aus öffentlichen Signalen, welche Unternehmen zum Kundenprofil passen, und bereitet personalisierte Erstansprachen vor — zur richtigen Zeit beim richtigen Unternehmen.</p>
         <p class="nutzen">Die Vertriebspipeline füllt sich von selbst.</p>
@@ -302,7 +484,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>n8n</span><span>LLM</span><span>Websuche</span><span>ICP-Profile</span></div>
       </article>
 
-      <article class="card eigen"><div class="meta"><span>seit 04/2026</span><span class="badge">KI &amp; Automatisierung</span></div>
+      <article class="reveal card eigen"><div class="meta"><span>seit 04/2026</span><span class="badge">KI &amp; Automatisierung</span></div>
         <h3>B2B-Rechner &amp; Multichannel-Outreach-Plattform</h3>
         <p>Acht öffentlich nutzbare B2B-Rechner (CPL, CAC, ROI, Pipeline u. a.) plus siebenstufige Outreach-Sequenz mit Sender-Warmup, Abmeldeprozess und durchgängigen End-to-End-Tests — insgesamt 17 konfigurierte Werkzeuge.</p>
         <p class="nutzen">Website-Besucher werden zu qualifizierten B2B-Leads.</p>
@@ -310,14 +492,14 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
         <div class="tech"><span>WordPress</span><span>n8n</span><span>SMTP-Relay</span><span>Playwright</span></div>
       </article>
 
-      <article class="card eigen"><div class="meta"><span>2026 · Prototyp</span><span class="badge">KI &amp; Automatisierung</span></div>
+      <article class="reveal card eigen"><div class="meta"><span>2026 · Prototyp</span><span class="badge">KI &amp; Automatisierung</span></div>
         <h3>EU-AI-Act-Compliance-Prüfer</h3>
         <p>LLM-gestütztes Audit-Werkzeug: ordnet KI-Anwendungsfälle der passenden Risikoklasse zu, leitet die jeweiligen Pflichten ab und erzeugt einen nachvollziehbaren Audit-Report als PDF.</p>
         <p class="nutzen">Schnelle, belegbare Konformitätsprüfung statt teurer manueller Rechtsprüfung.</p>
         <div class="tech"><span>LLM</span><span>Risikoklassifizierung</span><span>PDF-Report</span></div>
       </article>
 
-      <article class="card eigen"><div class="meta"><span>seit 2025</span><span class="badge">KI &amp; Automatisierung</span></div>
+      <article class="reveal card eigen"><div class="meta"><span>seit 2025</span><span class="badge">KI &amp; Automatisierung</span></div>
         <h3>Curriculum für zertifizierte KI-Trainer</h3>
         <p>Vollständiges Curriculum und Schulungsunterlagen für KI-Trainer in der Erwachsenenbildung — modular aufgebaut, mit Kompetenzprofil für KI-Berater und Ansätzen für Hochschul-Kooperationen.</p>
         <p class="nutzen">Verbindet didaktische Erfahrung mit aktueller KI-Kompetenz.</p>
@@ -330,12 +512,12 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
     <div class="sec-head"><h2>Content &amp; Wissensvermittlung</h2><span class="count">laufend</span></div>
     <p class="sec-intro">Wissen weitergeben gehört dazu — als Video, Tutorial und LinkedIn-Format.</p>
     <div class="grid">
-      <article class="card content"><div class="meta"><span>Videoproduktion · laufend</span><span class="badge">Content</span></div>
+      <article class="reveal card content"><div class="meta"><span>Videoproduktion · laufend</span><span class="badge">Content</span></div>
         <h3>Video-Serien zu D365, KI &amp; Automatisierung</h3>
         <p>Kurzvideo-Serien für LinkedIn und YouTube: reale Community-Probleme aus Dynamics 365 und n8n, jeweils ein Problem pro Video gelöst — produziert mit KI-Avatar, eigener Stimme und automatisierter Render-Pipeline.</p>
         <div class="tech"><span>HeyGen</span><span>Remotion</span><span>ffmpeg</span><span>YouTube-SEO</span></div>
       </article>
-      <article class="card content"><div class="meta"><span>LinkedIn · laufend</span><span class="badge">Content</span></div>
+      <article class="reveal card content"><div class="meta"><span>LinkedIn · laufend</span><span class="badge">Content</span></div>
         <h3>Fachbeiträge &amp; Carousels zur Schnittstelle D365 × KI</h3>
         <p>Redaktionsplan mit Fachbeiträgen und automatisiert erzeugten Carousels — ehrlich und anti-hype: was funktioniert, was nicht, und woran man den Unterschied erkennt.</p>
         <div class="tech"><span>python-pptx</span><span>Redaktionsplan</span></div>
@@ -366,6 +548,17 @@ footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper)}
       });
     });
   });
+})();
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){
+    els.forEach(function(el){el.classList.add('in')});
+    return;
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  els.forEach(function(el){io.observe(el)});
 })();
 </script>
 </body>
