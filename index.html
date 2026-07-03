@@ -65,7 +65,7 @@ h1 .x{color:var(--ki);font-style:italic;font-weight:400}
 
 /* Kennzahlen-Visuals */
 .vizband{padding:8px 0 34px}
-.vizgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vizgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:18px}
 .viz{background:var(--paper);border:1px solid var(--line);padding:20px 22px 16px}
 .viz h4{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 4px}
 .viz .big{font-family:var(--display);font-size:32px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
@@ -82,7 +82,7 @@ section{padding:56px 0 8px}
 .sec-intro{max-width:72ch;color:var(--ink-soft);margin:12px 0 26px;font-size:15.5px}
 
 /* Architektur-Diagramme */
-.diagrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(430px,1fr));gap:20px;padding:6px 0 20px}
+.diagrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(430px,100%),1fr));gap:20px;padding:6px 0 20px}
 @media(max-width:520px){.diagrid{grid-template-columns:1fr}}
 .diagram{background:var(--paper);border:1px solid var(--line);padding:22px}
 .diagram h3{font-family:var(--display);font-size:20px;font-weight:600;margin:0 0 2px}
@@ -102,7 +102,7 @@ section{padding:56px 0 8px}
 .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 
 /* Karten */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:20px;padding:4px 0 28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(330px,100%),1fr));gap:20px;padding:4px 0 28px}
 .card{position:relative;background:var(--paper);border:1px solid var(--line);padding:24px 24px 18px;display:flex;flex-direction:column;gap:10px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
 .card::before{content:"";position:absolute;top:0;bottom:0;left:0;width:3px;background:var(--line)}
 .card.kunde::before{background:var(--d365)}
